@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(routes);
 
 // DB
+/*
 (async () => {
     const database = require('../database/connection');
     const User = require('./models/userModel');
@@ -21,7 +22,7 @@ app.use(routes);
         console.log(err);
     }
 })();
-
+*/
 
 app.listen(port);
 console.log(`Running on port ${port}\n`);

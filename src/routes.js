@@ -1,15 +1,13 @@
 const express = require('express');
 
+const userController = require('./controllers/userController');
+const userC = new userController();
+
 const routes = express.Router();
 
 
 // R
-routes.get('/', (req, res) => {
-
-    return res.json(
-        { message: "Homepage" }
-    );
-});
+routes.get('/', userC.index);
 
 // C
 routes.get('/create', (req, res) => {
