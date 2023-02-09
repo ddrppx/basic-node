@@ -25,20 +25,13 @@ const userModel = database.define('users', {
 class User{
     async create(firstName, lastName, birthday){
 
+        const resultCreate = await userModel.create({
+            firstName: firstName,
+            lastName: lastName,
+            birthday: birthday
+        });
 
-        try { 
-            const result = await database.sync();
-            const resultCreate = await userModel.create({
-                firstName: firstName,
-                lastName: lastName,
-                birthday: birthday
-            });
-
-            return "Success";
-
-        } catch (err){
-            console.log(err);
-        }
+        return "Success";
     }
 
     async read(){
@@ -48,17 +41,27 @@ class User{
     }
 
     async readOne(user_id){
-        const user = await userModel.findOne({
-            where: {
-                id: user_id
-            }
-        });
+        const user = await userModel.findByPk(user_id);
         return user;
     }
 
-    update(){}
+    async update(user_id, new_first_name, new_last_name){
+        const user = await userModel.findByPk(user_id);
 
-    delete(){}
+        user.firstName = new_first_name;
+        user.lastName = new_last_name;
+
+        const result = await user.save();
+
+        return result;
+    }
+
+    async delete(user_id){
+        const user = await userModel.findByPk(user_id);
+        user.destroy();
+
+        return true;
+    }
 
 
     formatData(users_return){

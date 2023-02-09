@@ -9,21 +9,11 @@ const routes = express.Router();
 // R
 routes.get('/', userC.index);
 
+routes.get('/:id', userC.indexID)
+
 // C
-routes.get('/create', (req, res) => {
-    return res.json(
-        { message: "Create" }
-    );
 
-});
-
-routes.put("/create", (req, res) => {
-    const { name } = req.body;
-
-    return res.json(
-        { message: "Success" }
-    );
-});
+routes.put("/create", userC.create);
 
 routes.get('/update/:id', (req, res) => {
     return res.json( 
