@@ -43,7 +43,8 @@ class User{
 
     async read(){
         const users = await userModel.findAll();
-        return users;
+        
+        return this.formatData(users);
     }
 
     async readOne(user_id){
@@ -60,6 +61,20 @@ class User{
     delete(){}
 
 
+    formatData(users_return){
+        
+        let users_formatted = [];
+
+        users_return.forEach(user => {
+            users_formatted.push({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                birthday: user.birthday // FORMAT TO Y-m-d
+            });
+        });
+
+        return users_formatted;
+    }
 }
 
 module.exports = User;
