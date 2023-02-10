@@ -60,8 +60,9 @@ class User{
     }
 
     async delete(user_id){
-        const user = await userModel.findByPk(user_id);
-        const user_result = await user.destroy();
+        const user_del = await userModel.findByPk(user_id);
+
+        const user_result = await user_del.destroy();
 
         return user_result;
     }
@@ -73,6 +74,7 @@ class User{
 
         users_return.forEach(user => {
             users_formatted.push({
+                id: user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 birthday: user.birthday // FORMAT TO Y-m-d

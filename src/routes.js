@@ -17,6 +17,7 @@ routes.get('/:id', userC.indexID);
 // U 
 routes.put('/update/:id', userC.update);
 
+// D
 routes.delete('/delete/:id', userC.delete)
 
 module.exports = routes;

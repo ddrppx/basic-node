@@ -7,7 +7,7 @@ class userController {
     async index(req, res){
 
         const data = await user.read();
-        
+
         return res.json({
             success: true,
             data: data
@@ -16,11 +16,11 @@ class userController {
 
     async indexID(req, res){
         const id = req.params.id;
-        const user_data = await user.readOne(id);
+        const data = await user.readOne(id);
 
         return res.json({
             success: true,
-            data: user_data
+            data: data
         })      
     }
 
@@ -28,12 +28,12 @@ class userController {
 
         const { firstName, lastName, birthday } = req.body;
 
-        const create = await user.create(firstName, lastName, birthday);
-
+        const data = await user.create(firstName, lastName, birthday);
+        
         return res.json(
             { 
                 success: true,
-                message: create
+                data: data
             }
         );
     }
@@ -41,19 +41,13 @@ class userController {
     async update(req, res){
         const id = req.params.id;
         const { firstName, lastName } = req.body;
-        let message;
-        if (firstName.empty() || lastName.empty()) {
-            message = "Fields can't be empty.";
-        }else{
 
-        }
-
-        const update = await user.update(id, firstName, lastName);
+        const data = await user.update(id, firstName, lastName);
 
         return res.json(
             { 
                 success: true,
-                message: update
+                data: data
             }
         );
         
@@ -62,13 +56,12 @@ class userController {
     async delete(req, res){
         const id = req.params.id;
 
-        const del = await user.delete(id);
+        const data = await user.delete(id);
 
-        if 
         return res.json(
             { 
                 success: true,
-                message: del
+                data: data
             }
         );
     }
