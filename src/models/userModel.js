@@ -17,7 +17,7 @@ const userModel = database.define('users', {
         allowNull: false
     },
     birthday: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
     }
 });
@@ -31,7 +31,10 @@ class User{
             birthday: birthday
         });
 
-        return "Success";
+        const lastId = await resultCreate.id;
+        const newUser = await userModel.findByPk(lastId);
+
+        return newUser;
     }
 
     async read(){
@@ -58,9 +61,9 @@ class User{
 
     async delete(user_id){
         const user = await userModel.findByPk(user_id);
-        user.destroy();
+        const user_result = await user.destroy();
 
-        return true;
+        return user_result;
     }
 
 

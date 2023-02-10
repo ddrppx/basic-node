@@ -25,23 +25,53 @@ class userController {
     }
 
     async create(req, res){
-        const { firstName } = req.body.firstName;
-        const { lastName } = req.body.lastName;
-        const { birthday } = req.body.birthday;
 
-        const create = user.create(firstName, lastName, birthday);
+        const { firstName, lastName, birthday } = req.body;
+
+        const create = await user.create(firstName, lastName, birthday);
 
         return res.json(
-            { message: "Success" }
+            { 
+                success: true,
+                message: create
+            }
         );
     }
-    returnFunction(res, success, data){
-        return res.json({
-            success: success,
-            data: data
-        })
+
+    async update(req, res){
+        const id = req.params.id;
+        const { firstName, lastName } = req.body;
+        let message;
+        if (firstName.empty() || lastName.empty()) {
+            message = "Fields can't be empty.";
+        }else{
+
+        }
+
+        const update = await user.update(id, firstName, lastName);
+
+        return res.json(
+            { 
+                success: true,
+                message: update
+            }
+        );
+        
     }
 
+    async delete(req, res){
+        const id = req.params.id;
+
+        const del = await user.delete(id);
+
+        if 
+        return res.json(
+            { 
+                success: true,
+                message: del
+            }
+        );
+    }
 }
 
 module.exports = userController;

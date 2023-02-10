@@ -4,12 +4,15 @@ const sequelize = new Sequelize({
     storage: './database/sqlite.db'
 })
 
+/*
 try{
     sequelize.authenticate();
+
     console.log('Connection Success');
 } catch (error){
     console.log('Error: ', error);
 }
+*/
 
 module.exports = sequelize;
 

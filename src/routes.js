@@ -6,31 +6,17 @@ const userC = new userController();
 const routes = express.Router();
 
 
-// R
-routes.get('/', userC.index);
-
-routes.get('/:id', userC.indexID)
-
 // C
 
-routes.put("/create", userC.create);
+routes.post("/create", userC.create);
 
-routes.get('/update/:id', (req, res) => {
-    return res.json( 
-        { message: "Update" }
-    );
-})
+// R
+routes.get('/', userC.index);
+routes.get('/:id', userC.indexID);
 
-routes.put('/update/:id', (req,res) => {
-    return res.json(
-        { message: "Success" }
-    )
-})
+// U 
+routes.put('/update/:id', userC.update);
 
-routes.delete('/delete/:id', (req, res) => {
-    return res.json(
-        { message: "Success" }
-    )
-})
+routes.delete('/delete/:id', userC.delete)
 
 module.exports = routes;
