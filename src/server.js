@@ -24,5 +24,6 @@ app.use(routes);
 })();
 */
 
-app.listen(port);
-console.log(`Running on port ${port}\n`);
+app.listen(port, () => {
+    console.log(`Express running on port: ${port}\n   http://localhost:${port}/`);
+});
