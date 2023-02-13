@@ -1,3 +1,3 @@
 # basic-node
 
-Basic node backend (Vanilla js, maybe futurely typescript) with express for http requests and responses and sequelize for database administration/configuration.
+Basic node (Vanilla js, maybe futurely typescript) backend project with express for http requests and responses and sequelize for database administration/configuration.
