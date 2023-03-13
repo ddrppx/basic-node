@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "lib": [
+            "es6",
+            "esnext",
+            "dom"
+        ],
+        "strict": true,         
+        "esModuleInterop": true,   
+        "typeRoots": [
+            "./src/@types",
+            "./node_modules/@types"
+        ]
+    }
+}
