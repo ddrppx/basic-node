@@ -8,7 +8,7 @@ class userController {
 
         return res.json({
             success: true,
-            data: data
+            data
         })    
     }       
 
@@ -18,7 +18,7 @@ class userController {
 
         return res.json({
             success: true,
-            data: data
+            data
         })      
     }
 
@@ -31,7 +31,7 @@ class userController {
         return res.json(
             { 
                 success: true,
-                data: data
+                data
             }
         );
     }
@@ -45,7 +45,7 @@ class userController {
         return res.json(
             { 
                 success: true,
-                data: data
+                data
             }
         );
         
@@ -59,7 +59,7 @@ class userController {
         return res.json(
             { 
                 success: true,
-                data: data
+                data
             }
         );
     }
