@@ -1,4 +1,4 @@
-import Sequelize, { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../../database/config';
 
 interface UserAttributes {
@@ -11,20 +11,15 @@ interface UserAttributes {
     deletedAt?: Date;
 }
 
-export interface UserInput extends Optional<UserAttributes, 'id'>{}
-export interface UserOutput extends Required<UserAttributes>{}
-
 class User extends Model<UserAttributes, UserInput> implements UserAttributes {
-    id!: number;
-    firstName!: string;
-    lastName!: string;
-    birthday!: string;
-
+    public id!: number;
+    public firstName!: string;
+    public lastName!: string;
+    public birthday!: string;
     // readonly
-    createdAt?: Date;
-    updatedAt?: Date;
-    deletedAt?: Date;
-
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+    public readonly deletedAt!: Date;
 }
 
 User.init({
@@ -51,5 +46,9 @@ User.init({
     sequelize: sequelize,
     paranoid: true
 })
+
+
+export interface UserInput extends Optional<UserAttributes, 'id'>{}
+export interface UserOutput extends Required<UserAttributes>{}
 
 export default User;
