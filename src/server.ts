@@ -13,3 +13,7 @@ app.use(routes);
 app.listen(port, () => {
     console.log(`Express running on port: ${port}\nLive: http://localhost:${port}/`);
 });
+
+// TODO
+// Fix server stop (Error) when accessing endpoint from browser
+// Assign error handlers so the server dont stop on certain endpoints
