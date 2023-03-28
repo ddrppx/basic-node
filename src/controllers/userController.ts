@@ -41,17 +41,23 @@ class userController {
     }
 
     async create(req: Request, res: Response){
+        let success: boolean = false;
+        let msg: string;
 
         const { firstName, lastName, birthday } = req.body;
-
         const data = await create({firstName, lastName, birthday});
-        
-        return res.json(
-            { 
-                success: true,
-                data
-            }
-        );
+        if (data) {
+            success = true;
+            msg = "User created successfully."
+        } else {
+            success = false;
+            msg = "Error on user creation."
+        }
+        return res.json({ 
+            success,
+            msg,
+            data
+        });
     }
 
     async update(req: Request, res: Response){
