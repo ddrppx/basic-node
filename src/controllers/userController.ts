@@ -19,13 +19,25 @@ class userController {
     }       
 
     async indexID(req: Request, res: Response){
-        const id: number = +req.params.id;
-        const data = await readSingle(id);
+        let data: UserOutput | undefined;
+        let msg: string;
+        let success: boolean = false;
 
-        return res.json({
-            success: true,
-            data
-        })      
+        const id: number = parseInt(req.params.id);
+
+        if(id){
+            data = await readSingle(id);
+        }
+
+        if(!data) {
+            success = false;
+            msg = "User not found.";
+        } else {
+            success = true;
+            msg = "User found.";
+        }
+
+        return res.json({success, msg, data})      
     }
 
     async create(req: Request, res: Response){
