@@ -1,15 +1,21 @@
 import { Request, Response } from 'express';
 import { create, read, readSingle, update, deleteById } from '../models/dao/userDao';
+import { UserOutput } from '../models/User';
 
 class userController {
     async index(req: Request, res: Response){
+        const data: UserOutput[] = await read();
+        let msg: string;
+        let success: boolean = true;
+        if(data){
+            success = true;
+            msg = "Retrieved all users.";
+        } else {
+            success = false;
+            msg = "Error.";
+        }
 
-        const data = await read();
-
-        return res.json({
-            success: true,
-            data
-        })    
+        return res.json({success, msg, data})    
     }       
 
     async indexID(req: Request, res: Response){
