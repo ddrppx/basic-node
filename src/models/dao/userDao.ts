@@ -39,20 +39,3 @@ export const deleteById = async (user_id: number): Promise<boolean> => {
     })
     return !!deletedUser
 }
-
-//
-// const formatData = (users_return: Array<UserOutput>): Array<UserOutput> => {
-//   
-//     let users: Array<UserOutput> = [];
-//
-//     users_return.forEach((user) => {
-//         users.push({
-//             id: user.id,
-//             firstName: user.firstName,
-//             lastName: user.lastName,
-//             birthday: user.birthday
-//         })
-//     })
-//
-//     return users;
-// }
