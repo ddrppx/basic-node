@@ -57,17 +57,27 @@ class userController {
     }
 
     async update(req: Request, res: Response){
-        const id: number = +req.params.id;
+        let success: boolean = false;
+        let msg: string = "";
+        let data: UserOutput | undefined;
+        let user: UserOutput | null = null;
+        const id: number = parseInt(req.params.id);
         const { firstName, lastName } = req.body;
 
-        const data = await update(id, {id, firstName, lastName});
-
-        return res.json(
-            { 
-                success: true,
-                data
+        if(id){
+            user = await readSingle(id);
+        }
+        if(user) {
+            data = await update(id, {id, firstName, lastName});
+            if(data){
+               success = true;
+               msg = "User updated successfully."
             }
-        );
+        } else {
+            msg = "Error. User not found."
+        }
+
+        return res.json({success, msg, data});
         
     }
 

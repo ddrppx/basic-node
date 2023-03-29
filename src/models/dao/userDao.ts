@@ -21,13 +21,14 @@ export const readSingle = async (user_id: number): Promise<UserOutput | null> =>
     return read_user;
 }
 
-export const update = async (user_id: number, userInfo: Partial<UserInput>): Promise<UserOutput> => {
+export const update = async (user_id: number, userInfo: Partial<UserInput>): Promise<UserOutput | undefined> => {
     const user = await User.findByPk(user_id);
+    console.log(user)
+    let updatedUser;
 
-    if(!user){
-        throw new Error('User not found');
+    if(user){
+        updatedUser = await(user as User).update(userInfo)
     }
-    const updatedUser = await(user as User).update(userInfo)
 
     return updatedUser;
 }
