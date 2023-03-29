@@ -51,7 +51,7 @@ class userController {
             msg = "User created successfully."
         } else {
             success = false;
-            msg = "Error on user creation."
+            msg = "Error. Unable to create new user."
         }
         return res.json({success, msg, data});
     }
