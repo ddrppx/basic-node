@@ -19,7 +19,7 @@ class userController {
     }       
 
     async indexID(req: Request, res: Response){
-        let data: UserOutput | undefined;
+        let data: UserOutput | null = null;
         let msg: string;
         let success: boolean = false;
 
@@ -31,10 +31,10 @@ class userController {
 
         if(!data) {
             success = false;
-            msg = "User not found.";
+            msg = "User not found. Insert a valid user id number.";
         } else {
             success = true;
-            msg = "User found.";
+            msg = "User successfully found.";
         }
 
         return res.json({success, msg, data})      
@@ -53,11 +53,7 @@ class userController {
             success = false;
             msg = "Error on user creation."
         }
-        return res.json({ 
-            success,
-            msg,
-            data
-        });
+        return res.json({success, msg, data});
     }
 
     async update(req: Request, res: Response){

@@ -15,11 +15,8 @@ export const read = async (filters?: GetAllUserFilters): Promise<UserOutput[]> =
     return read_user;
 }
 
-export const readSingle = async (user_id: number): Promise<UserOutput> => {
+export const readSingle = async (user_id: number): Promise<UserOutput | null> => {
     const read_user = await User.findByPk(user_id);
-    if(!read_user){
-        throw new Error('User not found');
-    }
 
     return read_user;
 }
