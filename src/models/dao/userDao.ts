@@ -35,9 +35,7 @@ export const update = async (user_id: number, userInfo: Partial<UserInput>): Pro
 
 export const deleteById = async (user_id: number): Promise<boolean> => {
     const deletedUser = await User.destroy({
-        where:{
-            id: user_id
-        }
+        where:{ id: user_id }
     })
     return !!deletedUser
 }

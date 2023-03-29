@@ -82,16 +82,22 @@ class userController {
     }
 
     async delete(req: Request, res: Response){
-        const id: number = +req.params.id;
+        const id: number = parseInt(req.params.id);
+        let data: boolean | undefined;
+        let msg: string;
+        let user: UserOutput | null = null;
+        let success: boolean = false;
 
-        const data = await deleteById(id);
-
-        return res.json(
-            { 
-                success: true,
-                data
-            }
-        );
+        if(id){
+            user = await readSingle(id);
+        }
+        if(user) {
+            data = await deleteById(id);
+            msg = data? "User deleted.": "User found. Error on delete action.";
+        } else {
+            msg = "Error. User not found, unable to delete."
+        }
+        return res.json({success, msg, data});
     }
 }
 
