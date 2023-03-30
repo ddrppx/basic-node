@@ -18,7 +18,10 @@ export const read = async (filters?: GetAllUserFilters): Promise<UserOutput[]> =
 }
 
 export const readSingle = async (user_id: number): Promise<UserOutput | null> => {
-    const read_user = await User.findByPk(user_id);
+    const read_user = await User.findByPk(
+        user_id,
+        { attributes: ['firstName', 'lastName', 'birthday'] }
+    );
 
     return read_user;
 }
