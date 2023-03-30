@@ -10,7 +10,9 @@ export const create = async (new_user_info: UserInput): Promise<UserOutput> => {
 }
 
 export const read = async (filters?: GetAllUserFilters): Promise<UserOutput[]> => {
-    const read_user = await User.findAll({ logging: false });
+    const read_user = await User.findAll({
+        attributes: ['firstName', 'lastName', 'birthday']
+    });
     
     return read_user;
 }
