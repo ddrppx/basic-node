@@ -28,7 +28,6 @@ export const readSingle = async (user_id: number): Promise<UserOutput | null> =>
 
 export const update = async (user_id: number, userInfo: Partial<UserInput>): Promise<UserOutput | undefined> => {
     const user = await User.findByPk(user_id);
-    console.log(user)
     let updatedUser;
 
     if(user){
